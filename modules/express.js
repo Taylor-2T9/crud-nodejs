@@ -7,6 +7,12 @@ const UserModel = require('../src/models/user.model')
 const app = express()
 const jsonParser = bodyParser.json()
 
+app.use((req, res, next) => {
+    console.log(`Request type: ${req.method}`)
+    console.log(`Content type: ${req.headers["content-type"]}`)
+    next()
+})
+
 app.get('/home', (req, res) => {
     res.setHeader('content-type', 'text/html')
     res.status(200).send("<h1>Boa noite</h1>")
