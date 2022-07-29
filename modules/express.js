@@ -7,6 +7,15 @@ const UserModel = require('../src/models/user.model')
 const app = express()
 const jsonParser = bodyParser.json()
 
+/*
+pode usar o jSon parse do express e remover os middlewares dos metodos post e patch
+como já importou a const app pode só chamar assim -> app.use(express.json()) e ai remover os middlewares e a cosnt jsonParser
+
+A partir daqui foi diego kkk
+o middleware do body parser identifica o corpo enviado pelo content-type no cabeçalho de requisição,
+então se colocar como middleware no app use ele vai verificar req.headers["content-type"] === 'application/json' e alimentar o request.body automáticamente
+*/
+
 app.use((req, res, next) => {
     console.log(`Request type: ${req.method}`)
     console.log(`Content type: ${req.headers["content-type"]}`)
